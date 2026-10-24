@@ -1,0 +1,37 @@
+{
+  "name": "monadcampus-guild",
+  "version": "1.0.0",
+  "description": "MonadCampus & Guild - Gamified Student-DAO & Institutional Micro-Grant platform for Monad Blitz Ankara",
+  "main": "index.html",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:testnet": "hardhat run deploy.js --network monadTestnet",
+    "deploy:devnet": "hardhat run deploy.js --network monadDevnet",
+    "deploy:local": "hardhat run deploy.js --network hardhat",
+    "test": "hardhat test",
+    "node": "hardhat node"
+  },
+  "keywords": [
+    "monad",
+    "blockchain",
+    "smart-contracts",
+    "student-dao",
+    "guild",
+    "staking",
+    "micro-grants",
+    "nft",
+    "soulbound",
+    "defi"
+  ],
+  "author": "MonadCampus Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "ethers": "^6.9.0"
+  }
+}
