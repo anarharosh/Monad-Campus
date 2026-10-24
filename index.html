@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080A12" />
+  <meta name="description" content="MonadCampus & Guild — the institutional student-DAO and gamified liquidity layer on Monad. Stake MON, complete bounties, and put your campus on-chain." />
+  <meta property="og:title" content="MonadCampus & Guild — Campus Arena" />
+  <meta property="og:description" content="Represent your university, stake MON, complete protocol bounties, and climb the leaderboard on Monad." />
+  <title>MonadCampus &amp; Guild — The Campus Liquidity Layer on Monad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-monad" viewBox="0 0 32 32">
+      <path d="M16 2.5 29 9.8v12.4L16 29.5 3 22.2V9.8L16 2.5Z" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M9.6 20.8v-9l6.4 4.2 6.4-4.2v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="16" cy="23.1" r="1.35" fill="currentColor" />
+    </symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24">
+      <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19v14H6.5A2.5 2.5 0 0 1 4 16.5v-9Z" />
+      <path d="M4 8h15" />
+      <path d="M16.5 12.5h3.8" />
+      <circle cx="17.3" cy="12.5" r=".7" fill="currentColor" stroke="none" />
+    </symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24">
+      <path d="M7 17 17 7" /><path d="M8 7h9v9" />
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24">
+      <path d="M4 12h16" /><path d="m14 6 6 6-6 6" />
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12" /><path d="M18 6 6 18" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m5 12.5 4.4 4.4L19 6.8" />
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13.5 2 5 13h5.5L9.8 22 19 10.8h-5.8L13.5 2Z" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3.2" /><path d="M3.5 20v-1.5A5.5 5.5 0 0 1 9 13h0a5.5 5.5 0 0 1 5.5 5.5V20" />
+      <path d="M16 5.2a3.2 3.2 0 0 1 0 6.1" /><path d="M17.5 14.1a5 5 0 0 1 3 4.6V20" />
+    </symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24">
+      <path d="m3 16 6-6 4 4 8-9" /><path d="M15 5h6v6" />
+    </symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24">
+      <path d="M7 4h10v4.2A5.2 5.2 0 0 1 12 13.5v0a5.2 5.2 0 0 1-5-5.3V4Z" />
+      <path d="M7 6H3.5v1.5A4.5 4.5 0 0 0 8 12" /><path d="M17 6h3.5v1.5A4.5 4.5 0 0 1 16 12" />
+      <path d="M12 13.5V18" /><path d="M8 21h8" /><path d="M9.5 18h5" />
+    </symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24">
+      <path d="m12 3 1.1 3.9L17 8l-3.9 1.1L12 13l-1.1-3.9L7 8l3.9-1.1L12 3Z" />
+      <path d="m5 14 .7 2.3L8 17l-2.3.7L5 20l-.7-2.3L2 17l2.3-.7L5 14Z" />
+      <path d="m19 13 .8 2.7 2.2.8-2.2.7L19 20l-.8-2.8-2.2-.7 2.2-.8L19 13Z" />
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 2.8 20 6v5.4c0 5.1-3.2 8.3-8 9.8-4.8-1.5-8-4.7-8-9.8V6l8-3.2Z" />
+      <path d="m8.5 11.8 2.3 2.3 4.8-5" />
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" /><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" />
+      <path d="M12 14.5v2" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3.2 2" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14" /><path d="M5 12h14" />
+    </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24">
+      <rect x="8.5" y="8.5" width="11" height="11" rx="2" /><path d="M15.5 8.5v-2a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2" />
+    </symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24">
+      <path d="M10 4H5.5A1.5 1.5 0 0 0 4 5.5v13A1.5 1.5 0 0 0 5.5 20H10" />
+      <path d="M13 8l4 4-4 4" /><path d="M9 12h8" />
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 12 9 5 9-5" /><path d="m3 16 9 5 9-5" />
+    </symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24">
+      <path d="M3 12h4l2.5-7 5 14 2.5-7h4" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" /><circle cx="12" cy="12" r="4.5" /><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24">
+      <rect x="4" y="9.5" width="16" height="11" rx="1.5" /><path d="M3 9.5h18V14H3z" /><path d="M12 9.5v11" />
+      <path d="M12 9.5H8.2A2.7 2.7 0 1 1 12 6.2v3.3Z" /><path d="M12 9.5h3.8a2.7 2.7 0 1 0-3.8-3.3v3.3Z" />
+    </symbol>
+    <symbol id="i-external" viewBox="0 0 24 24">
+      <path d="M14 4h6v6" /><path d="M20 4 11 13" /><path d="M19 14v5.5A1.5 1.5 0 0 1 17.5 21h-12A1.5 1.5 0 0 1 4 19.5v-12A1.5 1.5 0 0 1 5.5 6H11" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" />
+    </symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24">
+      <path d="m2.5 9.2 9.5-5 9.5 5-9.5 5-9.5-5Z" /><path d="M6 11.3v5.1c2.8 2.1 9.2 2.1 12 0v-5.1" /><path d="M21.5 9.2v6" />
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24">
+      <path d="M12.6 2.5c.8 4.2-2.8 5.3-2.8 8.4 0 1.4.8 2.3 1.8 2.8-.2-2.2 1.5-3.5 2.7-5 2.3 2.2 3.5 4.5 3.5 7 0 3.3-2.6 5.8-5.8 5.8s-5.8-2.5-5.8-5.8c0-5.2 4.7-7.4 6.4-13.2Z" />
+    </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3c2.4 2.5 3.7 5.5 3.7 9S14.4 18.5 12 21c-2.4-2.5-3.7-5.5-3.7-9S9.6 5.5 12 3Z" />
+    </symbol>
+    <symbol id="i-link" viewBox="0 0 24 24">
+      <path d="M10 13.5a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1.2 1.2" />
+      <path d="M14 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1.2-1.2" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" /><path d="M12 11v5.5" /><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none" />
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 3 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6-4.4-4.2 6-.8L12 3Z" />
+    </symbol>
+    <symbol id="i-code" viewBox="0 0 24 24">
+      <path d="m8 7-5 5 5 5" /><path d="m16 7 5 5-5 5" /><path d="m13.5 4-3 16" />
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24">
+      <path d="m21 3-7.2 18-3-7.8L3 10.5 21 3Z" /><path d="m10.8 13.2 4.5-4.5" />
+    </symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1.5" /><rect x="13.5" y="3.5" width="7" height="4.5" rx="1.5" />
+      <rect x="13.5" y="11" width="7" height="9.5" rx="1.5" /><rect x="3.5" y="13.5" width="7" height="7" rx="1.5" />
+    </symbol>
+  </svg>
+
+  <div class="page-background" aria-hidden="true">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+    <div class="page-grid"></div>
+  </div>
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="network-ticker">
+      <div class="container ticker-shell">
+        <div class="network-live">
+          <span class="status-dot"></span>
+          <span>MONAD TESTNET</span>
+          <span class="network-live-tag">LIVE</span>
+        </div>
+        <div class="ticker-viewport">
+          <div class="ticker-track">
+            <div class="ticker-group">
+              <span class="ticker-item"><span class="ticker-key">THROUGHPUT</span> 10,000 TPS</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">AVG FEE</span> &lt;$0.0001</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">FINALITY</span> 0.4s</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">BLOCK</span> <span id="liveBlock">18,492,731</span></span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">SEASON 02</span> <span class="ticker-highlight">LIVE</span></span>
+              <span class="ticker-sep"></span>
+            </div>
+            <div class="ticker-group" aria-hidden="true">
+              <span class="ticker-item"><span class="ticker-key">THROUGHPUT</span> 10,000 TPS</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">AVG FEE</span> &lt;$0.0001</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">FINALITY</span> 0.4s</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">BLOCK</span> 18,492,731</span>
+              <span class="ticker-sep"></span>
+              <span class="ticker-item"><span class="ticker-key">SEASON 02</span> <span class="ticker-highlight">LIVE</span></span>
+              <span class="ticker-sep"></span>
+            </div>
+          </div>
+        </div>
+        <a class="ticker-link" href="#leaderboard">Arena <svg class="icon"><use href="#i-arrow-up-right" /></svg></a>
+      </div>
+    </div>
+
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="MonadCampus home">
+        <span class="brand-mark">
+          <span class="brand-mark-glow"></span>
+          <svg class="brand-monad"><use href="#i-monad" /></svg>
+        </span>
+        <span class="brand-word">Monad<span>Campus</span></span>
+        <span class="brand-tag">GUILD</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link" href="#leaderboard">The Arena</a>
+        <a class="nav-link" href="#vaults">Bounties</a>
+        <a class="nav-link" href="#student">My Campus</a>
+        <a class="nav-link" href="#simulator">Stake</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="header-stats" aria-label="Network statistics">
+          <div class="header-stat">
+            <span>Campus TVL</span>
+            <strong id="navTvl">6.60M <small>MON</small></strong>
+          </div>
+          <div class="header-stat">
+            <span>Guilds</span>
+            <strong>24</strong>
+          </div>
+          <div class="header-stat">
+            <span>Students</span>
+            <strong>8,420</strong>
+          </div>
+        </div>
+        <button class="connect-btn" id="walletButton" type="button">
+          <span class="connect-btn-icon"><svg class="icon"><use href="#i-wallet" /></svg></span>
+          <span id="walletLabel">Connect Wallet</span>
+          <span class="connect-status-dot"></span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+          <svg class="icon"><use href="#i-menu" /></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-nav" id="mobileNav">
+      <div class="container mobile-nav-inner">
+        <a href="#leaderboard">The Arena</a>
+        <a href="#vaults">Bounties</a>
+        <a href="#student">My Campus</a>
+        <a href="#simulator">Stake</a>
+        <div class="mobile-nav-stats">
+          <span><strong id="mobileTvl">6.60M MON</strong> Campus TVL</span>
+          <span><strong>24</strong> Guilds</span>
+          <span><strong>8,420</strong> Students</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-spotlight" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow reveal">
+              <span class="eyebrow-mark"><svg class="icon"><use href="#i-monad" /></svg></span>
+              <span>Monad Blitz Ankara</span>
+              <span class="eyebrow-divider"></span>
+              <span>Season 02</span>
+              <span class="eyebrow-live"><span class="status-dot"></span> Live</span>
+            </div>
+
+            <h1 class="hero-title reveal reveal-delay-1">
+              <span class="hero-line">The Institutional</span>
+              <span class="hero-line"><span class="text-gradient">Student-DAO</span> &amp;</span>
+              <span class="hero-line">Gamified Liquidity</span>
+              <span class="hero-line">Layer on <span class="monad-highlight">Monad<span class="title-dot">.</span></span></span>
+            </h1>
+
+            <p class="hero-subtitle reveal reveal-delay-2">
+              Represent your university, stake MON, complete protocol bounties, and climb the Leaderboard. Campus pride meets on-chain capital — at 10,000 TPS.
+            </p>
+
+            <div class="hero-actions reveal reveal-delay-3">
+              <button class="btn btn-primary btn-lg" id="heroJoinButton" type="button">
+                <span>Join a Campus Guild</span>
+                <svg class="icon"><use href="#i-arrow-right" /></svg>
+              </button>
+              <button class="btn btn-ghost btn-lg" id="heroSponsorButton" type="button">
+                <svg class="icon"><use href="#i-shield" /></svg>
+                <span>Sponsor a University</span>
+                <span class="btn-ghost-sub">For institutions</span>
+              </button>
+            </div>
+
+            <div class="hero-proof reveal reveal-delay-4">
+              <div class="avatar-stack" aria-hidden="true">
+                <span class="mini-crest mini-crest-1">M</span>
+                <span class="mini-crest mini-crest-2">B</span>
+                <span class="mini-crest mini-crest-3">ITU</span>
+                <span class="mini-crest mini-crest-4">BÜ</span>
+                <span class="mini-crest mini-crest-more">+20</span>
+              </div>
+              <p><strong>8,420 students</strong> building across <strong>24 campus guilds</strong>.</p>
+              <span class="hero-powered"><svg class="icon"><use href="#i-bolt" /></svg> Powered by Monad</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal reveal-delay-2">
+            <div class="arena-visual">
+              <div class="arena-grid" aria-hidden="true"></div>
+              <div class="arena-topbar">
+                <div class="arena-live"><span class="status-dot"></span> ARENA LIVE</div>
+                <span class="arena-season">SEASON 02</span>
+                <span class="arena-network"><svg class="icon"><use href="#i-monad" /></svg> MONAD</span>
+              </div>
+
+              <div class="orbit-scene" aria-hidden="true">
+                <div class="orbit-halo"></div>
+                <div class="orbit-ring orbit-ring-one"></div>
+                <div class="orbit-ring orbit-ring-two"></div>
+                <div class="orbit-ring orbit-ring-three"></div>
+                <div class="orbit-spark orbit-spark-one"></div>
+                <div class="orbit-spark orbit-spark-two"></div>
+                <div class="orbit-core">
+                  <div class="orbit-core-inner">
+                    <svg class="orbit-monad"><use href="#i-monad" /></svg>
+                  </div>
+                  <span class="orbit-core-label">CAMPUS<br />STAKING HUB</span>
+                </div>
+                <div class="orbit-satellite sat-metu">
+                  <span class="satellite-crest" style="--crest-color: #9b74ff">METU</span>
+                  <span class="satellite-label"><strong>METU</strong><span>$1.28M</span></span>
+                </div>
+                <div class="orbit-satellite sat-bilkent">
+                  <span class="satellite-crest" style="--crest-color: #4fd8ff">B</span>
+                  <span class="satellite-label"><strong>Bilkent</strong><span>$1.12M</span></span>
+                </div>
+                <div class="orbit-satellite sat-itu">
+                  <span class="satellite-crest" style="--crest-color: #ff9e64">ITU</span>
+                  <span class="satellite-label"><strong>ITU</strong><span>$984K</span></span>
+                </div>
+                <div class="orbit-satellite sat-bogazici">
+                  <span class="satellite-crest" style="--crest-color: #62e3b5">BÜ</span>
+                  <span class="satellite-label"><strong>Boğaziçi</strong><span>$842K</span></span>
+                </div>
+              </div>
+
+              <div class="arena-leader">
+                <div class="arena-leader-head">
+                  <span><span class="status-dot"></span> LIVE CAMPUS RANKINGS</span>
+                  <span>SYNCED 2s AGO</span>
+                </div>
+                <div id="heroTopGuilds" class="hero-top-guilds"></div>
+              </div>
+
+              <div class="arena-statusbar">
+                <span><strong>10K</strong> TPS</span>
+                <span><strong>&lt;$0.0001</strong> FEE</span>
+                <span><strong>0.4s</strong> FINALITY</span>
+              </div>
+            </div>
+
+            <div class="floating-chip floating-chip-rank">
+              <span class="floating-chip-icon"><svg class="icon"><use href="#i-trend" /></svg></span>
+              <span><strong id="heroRankDelta">+3 ranks</strong><small>METU this week</small></span>
+            </div>
+            <div class="floating-chip floating-chip-apy">
+              <span class="floating-chip-top">SEASON BOOST</span>
+              <strong>21.4%</strong>
+              <span>avg. staking APY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-metrics reveal reveal-delay-4">
+          <article class="hero-metric">
+            <div class="hero-metric-label">
+              <span class="hero-metric-icon"><svg class="icon"><use href="#i-layers" /></svg></span>
+              Total Campus TVL
+              <span class="metric-change"><svg class="icon"><use href="#i-trend" /></svg> 14.8%</span>
+            </div>
+            <strong class="hero-metric-value"><span id="heroTvl">6.60M</span> <small>MON</small></strong>
+            <p>Locked across 24 student guilds</p>
+            <div class="hero-mini-chart" aria-hidden="true">
+              <svg viewBox="0 0 180 38" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="heroChartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#8352FF" stop-opacity=".38" />
+                    <stop offset="100%" stop-color="#8352FF" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <path class="hero-chart-area" d="M0 31 C18 29, 24 22, 38 24 S62 29, 74 19 S98 20, 112 14 S140 17, 152 8 S170 9, 180 3 L180 38 L0 38Z" fill="url(#heroChartGradient)" />
+                <path class="hero-chart-line" d="M0 31 C18 29, 24 22, 38 24 S62 29, 74 19 S98 20, 112 14 S140 17, 152 8 S170 9, 180 3" fill="none" />
+              </svg>
+            </div>
+          </article>
+          <article class="hero-metric">
+            <div class="hero-metric-label">
+              <span class="hero-metric-icon"><svg class="icon"><use href="#i-users" /></svg></span>
+              Active Students
+              <span class="metric-change"><svg class="icon"><use href="#i-trend" /></svg> 12.3%</span>
+            </div>
+            <strong class="hero-metric-value">8,420</strong>
+            <p>Verified student wallets this season</p>
+            <div class="hero-avatar-row" aria-hidden="true">
+              <span class="mini-crest mini-crest-1">M</span>
+              <span class="mini-crest mini-crest-2">B</span>
+              <span class="mini-crest mini-crest-3">ITU</span>
+              <span class="mini-crest mini-crest-4">BÜ</span>
+              <span class="mini-crest mini-crest-5">K</span>
+              <span class="mini-crest mini-crest-more">+8.4K</span>
+            </div>
+          </article>
+          <article class="hero-metric">
+            <div class="hero-metric-label">
+              <span class="hero-metric-icon"><svg class="icon"><use href="#i-globe" /></svg></span>
+              Campus Guilds
+              <span class="metric-live">LIVE</span>
+            </div>
+            <strong class="hero-metric-value">24</strong>
+            <p>Across Türkiye, Europe &amp; beyond</p>
+            <div class="hero-globe-line"><span class="globe-dot"></span> 6 countries · 18 universities</div>
+          </article>
+          <article class="hero-metric">
+            <div class="hero-metric-label">
+              <span class="hero-metric-icon"><svg class="icon"><use href="#i-gift" /></svg></span>
+              Season Rewards
+              <span class="metric-live">MON</span>
+            </div>
+            <strong class="hero-metric-value">1.25M <small>MON</small></strong>
+            <p>Micro-grants &amp; quest emissions</p>
+            <div class="hero-reward-pills"><span>Quests</span><span>Grants</span><span>Yield</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section leaderboard-section" id="leaderboard">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-heading-main">
+            <div class="section-kicker"><span class="kicker-index">01</span> THE CAMPUS ARENA</div>
+            <h2>On-chain campus <span class="text-gradient">leaderboard</span></h2>
+            <p>Every stake, quest, and bounty moves the needle. Rank by liquidity, activity, or student power — updated block by block.</p>
+          </div>
+          <div class="section-heading-aside">
+            <div class="season-pill"><span class="status-dot"></span> SEASON 02 <span class="season-pill-divider"></span> 12 DAYS LEFT</div>
+            <button class="text-button" id="howRankingButton" type="button"><svg class="icon"><use href="#i-info" /></svg> How ranking works</button>
+          </div>
+        </div>
+
+        <div class="arena-panel reveal">
+          <div class="arena-panel-head">
+            <div class="arena-panel-title">
+              <span class="panel-live"><span class="status-dot"></span> LIVE STANDINGS</span>
+              <span class="panel-sync">Block #<span id="leaderboardBlock">18,492,731</span></span>
+            </div>
+            <div class="tab-switch" role="tablist" aria-label="Sort campus guilds">
+              <button class="tab-button is-active" id="tab-tvl" data-filter="tvl" role="tab" aria-selected="true" aria-controls="leaderboardList">
+                <svg class="icon"><use href="#i-layers" /></svg> Top TVL
+              </button>
+              <button class="tab-button" id="tab-activity" data-filter="activity" role="tab" aria-selected="false" aria-controls="leaderboardList">
+                <svg class="icon"><use href="#i-activity" /></svg> Highest Activity
+              </button>
+              <button class="tab-button" id="tab-students" data-filter="students" role="tab" aria-selected="false" aria-controls="leaderboardList">
+                <svg class="icon"><use href="#i-users" /></svg> Most Active Students
+              </button>
+            </div>
+            <div class="arena-panel-side">
+              <span class="panel-ranked-by" id="rankedByLabel">Ranked by total staked MON</span>
+              <button class="icon-button" id="refreshLeaderboardButton" type="button" aria-label="Refresh leaderboard">
+                <svg class="icon"><use href="#i-activity" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="lb-table" role="table" aria-label="Campus guild leaderboard">
+            <div class="lb-table-head" role="row">
+              <span role="columnheader">Rank</span>
+              <span role="columnheader">Campus Guild</span>
+              <span role="columnheader">Total Staked</span>
+              <span role="columnheader">Active Members</span>
+              <span role="columnheader">Season XP</span>
+              <span role="columnheader">7d Growth</span>
+              <span role="columnheader" class="lb-actions-head">Actions</span>
+            </div>
+            <div id="leaderboardList" class="lb-rows" role="rowgroup" aria-live="polite"></div>
+          </div>
+
+          <div class="arena-panel-foot">
+            <div class="panel-foot-left">
+              <span class="live-dot"></span>
+              <span>Synced to Monad testnet · <strong id="leaderboardUpdated">just now</strong></span>
+            </div>
+            <div class="panel-foot-center"><span class="status-dot mini"></span> <span id="leaderboardFootCount">8</span> guilds in view · 24 total</div>
+            <button class="text-button" id="allGuildsButton" type="button">Explore all guilds <svg class="icon"><use href="#i-arrow-right" /></svg></button>
+          </div>
+        </div>
+
+        <div class="arena-insights reveal">
+          <article class="insight-card insight-highlight">
+            <div class="insight-label"><span class="insight-icon"><svg class="icon"><use href="#i-flame" /></svg></span> TOP MOVER</div>
+            <h3>ITU Blockchain</h3>
+            <p>Fastest-growing guild this week with <strong>+21.3% TVL</strong> and 146 new student stakers.</p>
+            <button class="insight-link" id="topMoverStakeButton" type="button">Stake behind ITU <svg class="icon"><use href="#i-arrow-up-right" /></svg></button>
+          </article>
+          <article class="insight-card">
+            <div class="insight-label"><span class="insight-icon"><svg class="icon"><use href="#i-target" /></svg></span> WEEKLY QUEST</div>
+            <h3>Onboard 3 new students</h3>
+            <p>Complete the campus referral quest before Sunday to earn <strong>+450 XP</strong> for you and your guild.</p>
+            <div class="insight-progress"><span style="width: 66%"></span></div>
+            <div class="insight-progress-meta"><span>2 / 3 referred</span><span class="text-cyan">+450 XP</span></div>
+          </article>
+          <article class="insight-card">
+            <div class="insight-label"><span class="insight-icon"><svg class="icon"><use href="#i-trophy" /></svg></span> SEASON 02 PRIZES</div>
+            <h3 id="prizePoolLabel">1,250,000 MON</h3>
+            <p>Distributed to the top 10 guilds and their most active members. The season ends in 12 days.</p>
+            <button class="insight-link" id="viewPrizesButton" type="button">View prize structure <svg class="icon"><use href="#i-arrow-right" /></svg></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section vaults-section" id="vaults">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-heading-main">
+            <div class="section-kicker"><span class="kicker-index">02</span> INSTITUTIONAL PROTOCOL VAULTS</div>
+            <h2>Fund the next wave of <span class="text-gradient-cyan">campus builders</span></h2>
+            <p>Protocols deploy micro-grants and bounties directly to student DAOs. Students ship, learn, and get paid on-chain.</p>
+          </div>
+          <div class="section-heading-aside">
+            <button class="btn btn-primary" id="deployGrantButton" type="button">
+              <svg class="icon"><use href="#i-plus" /></svg>
+              <span>Deploy a Micro-Grant</span>
+            </button>
+            <span class="aside-note"><svg class="icon"><use href="#i-shield" /></svg> Verified protocols only</span>
+          </div>
+        </div>
+
+        <div class="vault-hero reveal">
+          <div class="vault-hero-copy">
+            <div class="vault-kicker"><span class="status-dot"></span> INSTITUTIONAL VAULT 01 · LIVE</div>
+            <h3>Monad Labs <span>Genesis Vault</span></h3>
+            <p>Fueling the first generation of student-led Monad builders. Twelve bounties live across onboarding, research, and ecosystem tooling.</p>
+            <div class="vault-metrics">
+              <div class="vault-metric"><span>Season allocation</span><strong>$250,000</strong></div>
+              <div class="vault-metric"><span>Bounties live</span><strong>12</strong></div>
+              <div class="vault-metric"><span>Students reached</span><strong>3,420</strong></div>
+            </div>
+            <div class="vault-actions">
+              <button class="btn btn-light" id="vaultFundButton" type="button">Fund a micro-grant <svg class="icon"><use href="#i-arrow-up-right" /></svg></button>
+              <button class="vault-secondary" id="vaultDetailsButton" type="button">View vault terms <svg class="icon"><use href="#i-arrow-right" /></svg></button>
+            </div>
+          </div>
+          <div class="vault-hero-visual">
+            <div class="vault-orbit" aria-hidden="true">
+              <div class="vault-orbit-ring vault-ring-a"></div>
+              <div class="vault-orbit-ring vault-ring-b"></div>
+              <div class="vault-orbit-core">
+                <span class="vault-core-mark"><svg class="icon"><use href="#i-monad" /></svg></span>
+                <span class="vault-core-caption">GENESIS<br />VAULT</span>
+              </div>
+              <span class="vault-protocol-orb orb-monad">M</span>
+              <span class="vault-protocol-orb orb-uniswap">U</span>
+              <span class="vault-protocol-orb orb-wormhole">W</span>
+            </div>
+            <div class="vault-progress-card">
+              <div class="vault-progress-top"><span>Season allocation deployed</span><strong>68%</strong></div>
+              <div class="vault-progress-track"><span style="width: 68%"></span></div>
+              <div class="vault-progress-meta"><span>$170,000 distributed</span><span>Ends in 12d</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grant-grid-head reveal">
+          <div>
+            <h3>Active campus bounties</h3>
+            <p>Curated quests from ecosystem protocols. Verify your student status to claim.</p>
+          </div>
+          <div class="grant-summary">
+            <span><strong id="activeGrantCount">3</strong> open bounties</span>
+            <span><strong id="grantPoolTotal">$17,500</strong> available</span>
+          </div>
+        </div>
+
+        <div class="grant-grid" id="grantGrid"></div>
+
+        <div class="institution-strip reveal">
+          <div class="institution-strip-copy">
+            <span class="institution-icon"><svg class="icon"><use href="#i-code" /></svg></span>
+            <div>
+              <strong>Building a protocol on Monad?</strong>
+              <p>Put your bounties in front of 8,420 verified student builders across 24 campuses.</p>
+            </div>
+          </div>
+          <div class="institution-logos" aria-label="Featured protocols">
+            <span class="protocol-logo protocol-monad"><svg class="icon"><use href="#i-monad" /></svg> Monad Labs</span>
+            <span class="protocol-logo protocol-uniswap"><span class="protocol-symbol">U</span> Uniswap</span>
+            <span class="protocol-logo protocol-wormhole"><span class="protocol-symbol">W</span> Wormhole</span>
+          </div>
+          <button class="btn btn-ghost" id="institutionContactButton" type="button">Become a sponsor <svg class="icon"><use href="#i-arrow-up-right" /></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section student-section" id="student">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-heading-main">
+            <div class="section-kicker"><span class="kicker-index">03</span> YOUR STUDENT COMMAND CENTER</div>
+            <h2>On-chain reputation, <span class="text-gradient">campus by campus</span></h2>
+            <p>Your guild, your XP, your proof. Every contribution is verifiable — and every badge is yours to keep.</p>
+          </div>
+          <div class="section-heading-aside">
+            <span class="ghost-address" id="studentSectionAddress"><svg class="icon"><use href="#i-wallet" /></svg> Wallet not connected</span>
+          </div>
+        </div>
+
+        <div class="student-layout">
+          <article class="student-card reveal">
+            <div class="student-card-glow" aria-hidden="true"></div>
+            <div class="student-profile-head">
+              <div class="student-avatar-wrap">
+                <div class="student-avatar" id="studentAvatar">CS</div>
+                <span class="student-online" title="Online"></span>
+              </div>
+              <div class="student-identity">
+                <div class="student-name-row">
+                  <h3 id="studentName">Campus Scholar</h3>
+                  <span class="demo-badge" id="profileStatusBadge">DEMO PREVIEW</span>
+                </div>
+                <p><span id="studentAddressLabel">0x7A3F…9C2E</span> <span class="identity-divider"></span> <span id="studentGuildLabel">METU Monad DAO</span></p>
+                <div class="student-tier-row">
+                  <span class="tier-pill tier-gold"><svg class="icon"><use href="#i-star" /></svg> Gold Scholar</span>
+                  <span class="member-since">Member since Season 01</span>
+                </div>
+              </div>
+              <button class="btn btn-small btn-ghost" id="studentConnectButton" type="button"><svg class="icon"><use href="#i-wallet" /></svg> Sync wallet</button>
+            </div>
+
+            <div class="student-stat-grid">
+              <div class="student-stat">
+                <span class="student-stat-label">Earned XP <svg class="icon" title="Season XP"><use href="#i-sparkles" /></svg></span>
+                <strong id="studentXp">12,480</strong>
+                <span class="student-stat-meta" id="studentXpDelta">+840 this week</span>
+              </div>
+              <div class="student-stat">
+                <span class="student-stat-label">Staked Balance</span>
+                <strong><span id="studentStaked">8,500</span> <small>MON</small></strong>
+                <span class="student-stat-meta">In <span id="studentStakedGuild">METU</span> vault</span>
+              </div>
+              <div class="student-stat">
+                <span class="student-stat-label">Guild Position</span>
+                <strong id="studentGuildRank">#1</strong>
+                <span class="student-stat-meta" id="studentGuildRankMeta">of 24 campus guilds</span>
+              </div>
+              <div class="student-stat">
+                <span class="student-stat-label">On-chain Badges</span>
+                <strong><span id="studentBadgeCount">3</span> <small>NFTs</small></strong>
+                <span class="student-stat-meta">ERC-721 proofs</span>
+              </div>
+            </div>
+
+            <div class="xp-progress-block">
+              <div class="xp-progress-head">
+                <span><strong id="studentLevel">Level 7</strong> · Campus Operator</span>
+                <span><span id="studentXpCurrent">12,480</span> / <span id="studentXpTarget">15,000</span> XP</span>
+              </div>
+              <div class="xp-progress-track"><span id="studentXpBar" style="width: 83.2%"></span></div>
+              <div class="xp-progress-foot"><span>Next: <strong id="studentNextPerk">Guild Council access</strong></span><span id="studentXpRemaining">2,520 XP to go</span></div>
+            </div>
+          </article>
+
+          <aside class="badge-case reveal reveal-delay-1">
+            <div class="badge-case-head">
+              <div>
+                <span class="badge-case-kicker">PROOF OF CAMPUS</span>
+                <h3>On-chain badge case</h3>
+              </div>
+              <span class="badge-count"><span id="badgeCountDisplay">3</span> / 12</span>
+            </div>
+            <p class="badge-case-sub">Soulbound proof of your contributions. Click a badge to inspect its on-chain metadata.</p>
+            <div class="badge-grid" id="badgeGrid"></div>
+            <div class="badge-case-foot"><svg class="icon"><use href="#i-shield" /></svg> Stored on Monad · Non-transferable</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section simulator-section" id="simulator">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-heading-main">
+            <div class="section-kicker"><span class="kicker-index">04</span> STAKING SIMULATOR</div>
+            <h2>Stake MON. <span class="text-gradient-cyan">Lift your campus.</span></h2>
+            <p>Model your impact before you sign. Slide, lock, and see how your stake shifts the leaderboard in real time.</p>
+          </div>
+          <div class="section-heading-aside">
+            <span class="sim-live-tag"><span class="status-dot"></span> REAL-TIME MODEL</span>
+          </div>
+        </div>
+
+        <div class="simulator-panel reveal">
+          <div class="simulator-controls">
+            <div class="sim-control-head">
+              <span class="sim-step">01</span>
+              <div>
+                <h3>Build your stake</h3>
+                <p>Route MON to your campus guild vault.</p>
+              </div>
+            </div>
+
+            <div class="sim-field">
+              <label for="simGuild">Campus guild</label>
+              <div class="sim-guild-select-wrap">
+                <span class="sim-selected-crest" id="simSelectedCrest">METU</span>
+                <select id="simGuild" aria-label="Select a campus guild"></select>
+                <svg class="icon sim-select-chevron"><use href="#i-chevron-down" /></svg>
+              </div>
+              <div class="sim-guild-meta">
+                <span id="simGuildMeta">Middle East Technical University · Rank #1</span>
+                <span class="sim-guild-tvl" id="simGuildTvl">$1.28M TVL</span>
+              </div>
+            </div>
+
+            <div class="sim-field sim-amount-field">
+              <div class="sim-label-row">
+                <label for="simAmount">Stake amount</label>
+                <div class="sim-amount-display"><span id="simAmountDisplay">8,500</span> <span>MON</span></div>
+              </div>
+              <div class="range-wrap">
+                <input type="range" id="simAmount" min="100" max="250000" step="100" value="8500" aria-describedby="simAmountHint" />
+              </div>
+              <div class="range-scale"><span>100</span><span>50K</span><span>100K</span><span>150K</span><span>250K</span></div>
+              <div class="quick-amounts">
+                <button type="button" data-amount="1000">1K</button>
+                <button type="button" data-amount="10000">10K</button>
+                <button type="button" data-amount="50000">50K</button>
+                <button type="button" data-amount="250000">MAX</button>
+              </div>
+              <p class="sim-hint" id="simAmountHint"><svg class="icon"><use href="#i-info" /></svg> You can stake from 100 to 250,000 MON. Unstake after your lock period.</p>
+            </div>
+
+            <div class="sim-field">
+              <label>Lock duration</label>
+              <div class="duration-options" id="durationOptions">
+                <button type="button" data-days="7" class="duration-option"><strong>7d</strong><span>+0.0%</span></button>
+                <button type="button" data-days="30" class="duration-option is-active"><strong>30d</strong><span>+2.4%</span></button>
+                <button type="button" data-days="90" class="duration-option"><strong>90d</strong><span>+5.6%</span></button>
+                <button type="button" data-days="180" class="duration-option"><strong>180d</strong><span>+9.1%</span></button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full sim-confirm-btn" id="simStakeButton" type="button">
+              <span>Confirm stake</span>
+              <span class="sim-confirm-amount" id="simConfirmAmount">8,500 MON</span>
+              <svg class="icon"><use href="#i-arrow-right" /></svg>
+            </button>
+            <p class="sim-disclaimer"><svg class="icon"><use href="#i-shield" /></svg> Prototype simulation only. No real funds move.</p>
+          </div>
+
+          <div class="simulator-results">
+            <div class="sim-results-glow" aria-hidden="true"></div>
+            <div class="sim-results-head">
+              <div>
+                <span class="sim-result-kicker">PROJECTED SEASON OUTCOME</span>
+                <h3>Your campus impact</h3>
+              </div>
+              <span class="sim-apy-pill"><span id="simApy">18.4%</span> APY</span>
+            </div>
+
+            <div class="sim-hero-result">
+              <span>Estimated season XP</span>
+              <strong>+<span id="simXp">1,190</span></strong>
+              <p><svg class="icon"><use href="#i-sparkles" /></svg> Includes <span id="simMultiplier">1.2×</span> lock multiplier</p>
+            </div>
+
+            <div class="sim-result-grid">
+              <div class="sim-result-cell">
+                <span>Annual MON yield</span>
+                <strong><span id="simAnnualYield">1,564</span> <small>MON</small></strong>
+              </div>
+              <div class="sim-result-cell">
+                <span>Weekly estimate</span>
+                <strong><span id="simWeeklyYield">30.1</span> <small>MON</small></strong>
+              </div>
+              <div class="sim-result-cell">
+                <span>Guild TVL boost</span>
+                <strong>+<span id="simTvlBoost">0.7%</span></strong>
+              </div>
+              <div class="sim-result-cell">
+                <span>Projected rank</span>
+                <strong id="simProjectedRank">#1 <small>↔</small></strong>
+              </div>
+            </div>
+
+            <div class="sim-rank-visual">
+              <div class="sim-rank-head">
+                <span>Guild TVL after stake</span>
+                <span id="simRankNote">Still #1 in the arena</span>
+              </div>
+              <div class="sim-bar-row">
+                <span class="sim-bar-label" id="simBarCurrentLabel">Now</span>
+                <div class="sim-bar"><span class="sim-bar-current" id="simBarCurrent" style="width: 100%"></span></div>
+                <span class="sim-bar-value" id="simBarCurrentValue">1.28M</span>
+              </div>
+              <div class="sim-bar-row">
+                <span class="sim-bar-label">After</span>
+                <div class="sim-bar"><span class="sim-bar-after" id="simBarAfter" style="width: 100%"></span></div>
+                <span class="sim-bar-value" id="simBarAfterValue">1.29M</span>
+              </div>
+              <div class="sim-rank-track">
+                <div class="rank-track-markers" aria-hidden="true"><span>#24</span><span>#12</span><span>#1</span></div>
+                <div class="rank-track-line"><span class="rank-track-position" id="rankTrackPosition"></span></div>
+              </div>
+              <div class="sim-rank-foot"><span id="simDistanceToNext">You lead by 157.7K MON</span><span class="text-cyan">Live projection</span></div>
+            </div>
+
+            <div class="sim-rewards-note">
+              <span class="sim-rewards-icon"><svg class="icon"><use href="#i-gift" /></svg></span>
+              <div><strong>Season multiplier active</strong><p>Top 3 guilds share a <span id="simPrizeShare">320K MON</span> bonus pool at season close.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="final-cta reveal">
+          <div class="final-cta-grid" aria-hidden="true"></div>
+          <div class="final-cta-orb final-cta-orb-one" aria-hidden="true"></div>
+          <div class="final-cta-orb final-cta-orb-two" aria-hidden="true"></div>
+          <div class="final-cta-content">
+            <span class="final-cta-kicker"><span class="status-dot"></span> SEASON 02 IS LIVE</span>
+            <h2>Put your campus <span class="text-gradient">on-chain.</span></h2>
+            <p>Join the student-owned liquidity layer on Monad. Your university is already competing.</p>
+            <div class="final-cta-actions">
+              <button class="btn btn-primary btn-lg" id="finalJoinButton" type="button">Join a Campus Guild <svg class="icon"><use href="#i-arrow-right" /></svg></button>
+              <button class="btn btn-ghost btn-lg" id="finalSponsorButton" type="button"><svg class="icon"><use href="#i-shield" /></svg> Sponsor a University</button>
+            </div>
+          </div>
+          <div class="final-cta-badge" aria-hidden="true">
+            <div class="cta-badge-ring"></div>
+            <div class="cta-badge-core">
+              <svg class="cta-badge-monad"><use href="#i-monad" /></svg>
+              <span>MONAD<br />CAMPUS</span>
+            </div>
+            <span class="cta-badge-orbit cta-orbit-1">METU</span>
+            <span class="cta-badge-orbit cta-orbit-2">ITU</span>
+            <span class="cta-badge-orbit cta-orbit-3">BÜ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand-col">
+        <a class="brand" href="#top" aria-label="MonadCampus home">
+          <span class="brand-mark"><svg class="brand-monad"><use href="#i-monad" /></svg></span>
+          <span class="brand-word">Monad<span>Campus</span></span>
+          <span class="brand-tag">GUILD</span>
+        </a>
+        <p>The institutional student-DAO and gamified liquidity layer on Monad. Built for campus builders, by campus builders.</p>
+        <div class="footer-socials">
+          <a href="#top" aria-label="MonadCampus on X"><svg class="icon"><use href="#i-external" /></svg></a>
+          <a href="#top" aria-label="MonadCampus on Discord"><svg class="icon"><use href="#i-code" /></svg></a>
+          <a href="#top" aria-label="MonadCampus on GitHub"><svg class="icon"><use href="#i-link" /></svg></a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Explore</h4>
+        <a href="#leaderboard">Campus Arena</a>
+        <a href="#vaults">Bounties</a>
+        <a href="#student">My Campus</a>
+        <a href="#simulator">Staking Simulator</a>
+      </div>
+      <div class="footer-links-col">
+        <h4>For Institutions</h4>
+        <a href="#vaults">Deploy a Grant</a>
+        <a href="#vaults">Protocol Vaults</a>
+        <a href="#vaults">Become a Sponsor</a>
+        <a href="#leaderboard">Campus Directory</a>
+      </div>
+      <div class="footer-links-col">
+        <h4>Network</h4>
+        <span class="footer-status"><span class="status-dot"></span> Monad Testnet Active</span>
+        <span class="footer-data">10,000 TPS · 0.4s finality</span>
+        <span class="footer-data">Avg. fee &lt;$0.0001</span>
+        <span class="footer-data footer-block">Block #<span id="footerBlock">18,492,731</span></span>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 MonadCampus &amp; Guild. Prototype for Monad Blitz Ankara.</span>
+      <span class="footer-made">Built on <span class="footer-monad"><svg class="icon"><use href="#i-monad" /></svg> Monad</span> · Designed for campus builders</span>
+    </div>
+  </footer>
+
+  <dialog class="app-modal" id="appModal" aria-labelledby="modalTitle">
+    <div class="modal-card" id="modalCard"></div>
+  </dialog>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+
+  <noscript>
+    <div class="noscript-banner">This prototype needs JavaScript enabled to simulate wallet, staking, and bounty interactions.</div>
+  </noscript>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
